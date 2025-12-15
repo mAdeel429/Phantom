@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -10,34 +10,471 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Phantom</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6938071b67c7ebce6a23a787/53be4aea5_favicon.png"
+    rel="icon" type="image/png" />
+
+  <style>
+    @keyframes badge-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .badge-spinner {
+      animation: badge-spin 1s linear infinite;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div
+      class="min-h-[100dvh] bg-black text-white font-sans selection:bg-[#AB9FF2]/30 flex items-center justify-center sm:p-8">
+      <div
+        class="w-full h-[100dvh] sm:h-[850px] sm:max-w-[430px] bg-black sm:bg-[#000000] sm:border-[10px] sm:border-[#1a1a1a] sm:rounded-[50px] shadow-2xl overflow-hidden relative flex flex-col pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+        <div class="flex flex-col h-full bg-black text-white overflow-hidden font-sans pb-20">
+          <header class="px-5 pt-8 pb-2 flex justify-between items-center bg-black">
+            <div class="flex items-center gap-3">
+              <div class="relative">
+                <div
+                  class="w-9 h-9 rounded-full bg-[#2A2A2A] overflow-hidden flex items-center justify-center border border-[#333]">
+                  <span class="text-lg">💸</span></div>
+              </div>
+              <div class="flex flex-col"><span
+                  class="text-[11px] text-[#888] font-medium leading-tight">@investorexperte</span><span
+                  class="text-[15px] font-semibold leading-tight mt-0.5">IE</span></div>
+            </div>
+            <div class="flex items-center gap-5"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-clock w-6 h-6 text-white stroke-[1.5]">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-search w-6 h-6 text-white stroke-[1.5]">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg></div>
+          </header>
+          <div class="flex-1 overflow-y-auto custom-scrollbar relative px-4 no-scrollbar">
+            <div
+              class="absolute left-0 right-0 flex justify-center pointer-events-none z-20 transition-all duration-300 ease-out"
+              style="top: -50px; opacity: 0;">
+              <div
+                class="w-10 h-10 bg-[#222] rounded-full shadow-lg flex items-center justify-center border border-[#333]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-refresh-cw w-5 h-5 text-[#A085FF]" style="transform: rotate(0deg);">
+                  <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                  <path d="M21 3v5h-5"></path>
+                  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                  <path d="M8 16H3v5"></path>
+                </svg></div>
+            </div>
+            <section class="mt-4 mb-6 flex flex-col items-start w-full">
+              <h1 class="font-bold text-white leading-none tracking-tight transition-all duration-200 text-[32px]">
+                €310,432.04853082</h1>
+              <div class="flex items-center gap-2 mt-2"><span
+                  class="text-[#16C784] text-sm font-medium tracking-wide">+€0.00000038</span><span
+                  class="bg-[#16C784]/20 text-[#16C784] text-xs font-bold px-1.5 py-0.5 rounded">+0.01%</span></div>
+            </section>
+            <section class="grid grid-cols-4 gap-3 mb-8">
+              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+                <div
+                  class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-qr-code w-7 h-7 text-[#A085FF]">
+                    <rect width="5" height="5" x="3" y="3" rx="1"></rect>
+                    <rect width="5" height="5" x="16" y="3" rx="1"></rect>
+                    <rect width="5" height="5" x="3" y="16" rx="1"></rect>
+                    <path d="M21 16h-3a2 2 0 0 0-2 2v3"></path>
+                    <path d="M21 21v.01"></path>
+                    <path d="M12 7v3a2 2 0 0 1-2 2H7"></path>
+                    <path d="M3 12h.01"></path>
+                    <path d="M12 3h.01"></path>
+                    <path d="M12 16v.01"></path>
+                    <path d="M16 12h1"></path>
+                    <path d="M21 12v.01"></path>
+                    <path d="M12 21v-1"></path>
+                  </svg></div><span class="text-[11px] font-medium text-[#888]">Erhalten</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+                <div
+                  class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-send w-7 h-7 text-[#A085FF]">
+                    <path
+                      d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+                    </path>
+                    <path d="m21.854 2.147-10.94 10.939"></path>
+                  </svg></div><span class="text-[11px] font-medium text-[#888]">Senden</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+                <div
+                  class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-left-right w-7 h-7 text-[#A085FF]">
+                    <path d="M8 3 4 7l4 4"></path>
+                    <path d="M4 7h16"></path>
+                    <path d="m16 21 4-4-4-4"></path>
+                    <path d="M20 17H4"></path>
+                  </svg></div><span class="text-[11px] font-medium text-[#888]">Tauschen</span>
+              </div>
+              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+                <div
+                  class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-credit-card w-7 h-7 text-[#A085FF]">
+                    <rect width="20" height="14" x="2" y="5" rx="2"></rect>
+                    <line x1="2" x2="22" y1="10" y2="10"></line>
+                  </svg></div><span class="text-[11px] font-medium text-[#888]">Kaufen</span>
+              </div>
+            </section>
+            <section class="mb-6">
+              <div class="flex items-center justify-between mb-2 cursor-pointer hover:opacity-80 transition-opacity">
+                <h2 class="text-[17px] font-semibold">Token</h2>
+                <div class="flex items-center gap-1 text-[#666]"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings w-4 h-4">
+                    <path
+                      d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+                    </path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-right w-4 h-4">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg></div>
+              </div>
+              <div class="space-y-3">
+                <div
+                  class="flex items-center justify-between px-4 py-4 bg-[#1C1C1E] rounded-[20px] cursor-pointer active:bg-[#252527] transition-colors relative group"
+                  style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+                  <div class="flex items-center gap-3">
+                    <div class="relative"><img src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png?v=029"
+                        alt="USDC" class="w-10 h-10 rounded-full">
+                      <div class="absolute -bottom-1 -right-1 bg-white rounded-full p-[2px]"><svg
+                          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="lucide lucide-layout-grid w-3 h-3 text-black">
+                          <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+                          <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                          <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                          <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+                        </svg></div>
+                    </div>
+                    <div class="flex flex-col"><span class="font-semibold text-white text-[16px]">USDC</span><span
+                        class="text-[13px] text-[#888]">0.00632 USDC</span></div>
+                  </div>
+                  <div class="flex flex-col items-end"><span
+                      class="font-medium text-white text-[15px]">&lt;€0.01</span><span
+                      class="text-[13px] text-[#16C784]">+&lt;€0.01</span></div><button
+                    class="absolute right-2 top-2 p-1.5 bg-red-500/20 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-x w-3 h-3">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg></button>
+                </div>
+                <div
+                  class="flex items-center justify-between px-4 py-4 bg-[#1C1C1E] rounded-[20px] cursor-pointer active:bg-[#252527] transition-colors relative group"
+                  style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+                  <div class="flex items-center gap-3">
+                    <div class="relative"><img src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029" alt="SOL"
+                        class="w-10 h-10 rounded-full"></div>
+                    <div class="flex flex-col"><span class="font-semibold text-white text-[16px]">Solana</span><span
+                        class="text-[13px] text-[#888]">98 SOL</span></div>
+                  </div>
+                  <div class="flex flex-col items-end"><span
+                      class="font-medium text-white text-[15px]">€14,034.71</span><span
+                      class="text-[13px] text-[#16C784]">+&lt;€0.01</span></div><button
+                    class="absolute right-2 top-2 p-1.5 bg-red-500/20 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-x w-3 h-3">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg></button>
+                </div>
+                <div
+                  class="flex items-center justify-between px-4 py-4 bg-[#1C1C1E] rounded-[20px] cursor-pointer active:bg-[#252527] transition-colors relative group"
+                  style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+                  <div class="flex items-center gap-3">
+                    <div class="relative"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"
+                        class="w-10 h-10 rounded-full"></div>
+                    <div class="flex flex-col"><span class="font-semibold text-white text-[16px]">Ethereum</span><span
+                        class="text-[13px] text-[#888]">3 ETH</span></div>
+                  </div>
+                  <div class="flex flex-col items-end"><span
+                      class="font-medium text-white text-[15px]">€10,306.36</span><span
+                      class="text-[13px] text-[#16C784]">+&lt;€0.01</span></div><button
+                    class="absolute right-2 top-2 p-1.5 bg-red-500/20 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-x w-3 h-3">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg></button>
+                </div>
+                <div
+                  class="flex items-center justify-between px-4 py-4 bg-[#1C1C1E] rounded-[20px] cursor-pointer active:bg-[#252527] transition-colors relative group"
+                  style="opacity: 1; transform: none; transform-origin: 50% 50% 0px;">
+                  <div class="flex items-center gap-3">
+                    <div class="relative"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"
+                        class="w-10 h-10 rounded-full"></div>
+                    <div class="flex flex-col"><span class="font-semibold text-white text-[16px]">Bitcoin</span><span
+                        class="text-[13px] text-[#888]">3 BTC</span></div>
+                  </div>
+                  <div class="flex flex-col items-end"><span
+                      class="font-medium text-white text-[15px]">€286,090.97</span><span
+                      class="text-[13px] text-[#16C784]">+&lt;€0.01</span></div><button
+                    class="absolute right-2 top-2 p-1.5 bg-red-500/20 text-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"><svg
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="lucide lucide-x w-3 h-3">
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg></button>
+                </div>
+              </div>
+            </section>
+            <div class="flex items-center gap-2 text-[#666] text-xs mt-8 mb-4"><svg xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info w-3 h-3">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg><span>Offenlegungen anzeigen</span></div>
+          </div>
+          <div
+            class="fixed bottom-0 left-0 right-0 h-[85px] bg-[#000000]/95 backdrop-blur-xl flex items-start justify-around pt-5 z-20 pb-8">
+            <div class="flex flex-col items-center gap-1 cursor-pointer text-[#A085FF]"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-house w-7 h-7">
+                <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+                <path
+                  d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+                </path>
+              </svg></div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer text-[#666]"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-layout-grid w-7 h-7">
+                <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+                <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+                <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+                <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+              </svg></div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer text-[#666]"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-left-right w-7 h-7">
+                <path d="M8 3 4 7l4 4"></path>
+                <path d="M4 7h16"></path>
+                <path d="m16 21 4-4-4-4"></path>
+                <path d="M20 17H4"></path>
+              </svg></div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer text-[#666]"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-search w-7 h-7">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg></div>
+          </div>
+        </div>
+      </div>
+      <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          /* IE and Edge */
+          scrollbar-width: none;
+        }
+        body {
+          user-select: none;
+          -webkit-user-select: none;
+          -webkit-tap-highlight-color: transparent;
+        }
+      </style>
+    </div>
+    <div
+      class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+      <div
+        class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Overlay -->
+<div id="tokenModalOverlay" data-state="closed"
+    class="fixed inset-0 z-50 bg-black/80 opacity-0 pointer-events-none transition-opacity">
+</div>
+
+<!-- Modal Content -->
+<div id="tokenModal" data-state="closed"
+    class="fixed left-[50%] top-[50%] z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 rounded-2xl bg-[#1C1C1E] border-[#333] text-white w-[90%] max-w-[350px] opacity-0 pointer-events-none transition-all">
+    
+    <!-- Modal Header -->
+    <div class="flex flex-col space-y-1.5 text-center sm:text-left">
+        <h2 class="font-semibold tracking-tight text-center text-lg">Token bearbeiten</h2>
+    </div>
+   <form class="space-y-5 py-2">
+        <div class="space-y-2 relative">
+  <label class="text-sm font-medium leading-none text-[#888]">Token wählen</label>
+  <button id="tokenDropdownBtn" type="button"
+      class="flex w-full items-center justify-between px-3 py-2 bg-[#2C2C2E] text-white rounded-xl h-12">
+      <span id="tokenDropdownSelected">SOL</span>
+      </span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+  </button>
+  <ul id="tokenDropdownOptions"
+      class="absolute left-0 right-0 mt-1 bg-[#2C2C2E] text-white rounded-xl max-h-40 overflow-auto shadow-lg hidden z-50">
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">BTC</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">ETH</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">SOL</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">USDC</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">USDT</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">XRP</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">DOGE</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer" >ADA</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">DOT</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">SHIB</li>
+      <li class="px-3 py-2 hover:bg-[#3A3A3A] cursor-pointer">AVAX</li>
+  </ul>
+</div>
+      <div class="space-y-2"><label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#888]">Anzahl
+          (Menge)</label><input type="number"
+          class="flex w-full border border-input px-3 py-1 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-[#2C2C2E] border-none text-white h-12 text-lg rounded-xl placeholder:text-[#555]"
+          placeholder="0.00" value=""></div>
+      <div class="space-y-2"><label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#888]">Eigener
+          Preis (Optional)</label><input type="number"
+          class="flex w-full border border-input px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-[#2C2C2E] border-none text-white h-12 rounded-xl placeholder:text-[#555]"
+          placeholder="Marktpreis nutzen" value=""></div><button
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 shadow px-4 py-2 w-full bg-[#A085FF] hover:bg-[#8e72f0] text-white h-12 font-semibold text-[16px] rounded-xl mt-2"
+        type="submit">Speichern</button>
+    </form>
+
+    <!-- Close Button -->
+    <button id="tokenModalCloseBtn" type="button"
+        class="absolute right-4 top-4 opacity-70 hover:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x h-4 w-4">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+        </svg>
+        <span class="sr-only">Close</span>
+    </button>
+</div>
+
+<script>
+// Select the container that has Token text + settings icon
+const tokenContainer = document.querySelector('.mb-6 .flex.items-center.justify-between.cursor-pointer');
+const tokenHeader = tokenContainer.querySelector('h2'); // Token text
+const tokenSettingsIcon = tokenContainer.querySelector('.lucide-settings'); // Settings icon
+const tokenModal = document.getElementById('tokenModal');
+const tokenModalOverlay = document.getElementById('tokenModalOverlay');
+const tokenModalCloseBtn = document.getElementById('tokenModalCloseBtn');
+
+// Open modal
+function openTokenModal() {
+    tokenModal.setAttribute('data-state', 'open');
+    tokenModalOverlay.setAttribute('data-state', 'open');
+    tokenModal.classList.remove('opacity-0', 'pointer-events-none');
+    tokenModalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    tokenModal.classList.add('opacity-100', 'pointer-events-auto');
+    tokenModalOverlay.classList.add('opacity-100', 'pointer-events-auto');
+}
+
+// Close modal
+function closeTokenModal() {
+    tokenModal.setAttribute('data-state', 'closed');
+    tokenModalOverlay.setAttribute('data-state', 'closed');
+    tokenModal.classList.remove('opacity-100', 'pointer-events-auto');
+    tokenModalOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+    tokenModal.classList.add('opacity-0', 'pointer-events-none');
+    tokenModalOverlay.classList.add('opacity-0', 'pointer-events-none');
+}
+
+// Event listeners
+tokenHeader.addEventListener('click', openTokenModal);
+tokenSettingsIcon.addEventListener('click', openTokenModal);
+tokenModalCloseBtn.addEventListener('click', closeTokenModal);
+tokenModalOverlay.addEventListener('click', closeTokenModal);
+const dropdownBtn = document.getElementById('tokenDropdownBtn');
+const dropdownSelected = document.getElementById('tokenDropdownSelected');
+const dropdownOptions = document.getElementById('tokenDropdownOptions');
+
+// Toggle dropdown
+dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // important: prevent modal click listener from closing
+    dropdownOptions.classList.toggle('hidden');
+});
+
+// Option select
+dropdownOptions.querySelectorAll('li').forEach(option => {
+    option.addEventListener('click', () => {
+        dropdownSelected.textContent = option.textContent;
+        dropdownOptions.classList.add('hidden');
+    });
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', () => {
+    dropdownOptions.classList.add('hidden');
+});</script>
+</body>
+
 </html>

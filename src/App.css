@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+/* Styles moved from the provided HTML */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Disable text selection for app-like feel (keeps parity with original HTML) */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}

@@ -59,6 +59,15 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    .CTAbtn {
+      transition: transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .CTAbtn.pressed {
+      transform: scale(0.95);
+    }
   </style>
 </head>
 
@@ -147,16 +156,25 @@
               <p
                 style="font-family: 'Inter', sans-serif; color: #848484; text-align: center; width: 300px; font-style: normal; font-weight: 400; font-size: 15px; margin-top: 6px;">
                 Fund your wallet with cash or crypto and you'll be set to start trading!</p>
-              <button class="active:scale-95 transition-transform select-none touch-manipulation"
+              <!-- <button class="active:scale-95 transition-transform select-none touch-manipulation"
                 style="width: 98%; height: 44px; cursor: pointer; color: #000; font-size: 16px; font-weight: 600; background: #AC9EF6; border: 1px solid #9C91D4; border-radius: 15px; margin-top: 8px;">
                 Buy SOL with Cash</button>
               <button class="active:scale-95 transition-transform select-none touch-manipulation"
                 style="width: 98%; height: 44px; cursor: pointer; color: #fff; font-size: 16px; font-weight: 600; background: #292929; border-radius: 15px; margin-top: 8px;">Deposit
-                Crypto</button>
+                Crypto</button> -->
+              <button class="CTAbtn" style="width:98%;height:44px;font-size:16px;font-weight:600;
+                  background:#AC9EF6;border:1px solid #9C91D4;border-radius:15px;margin-top:8px;">
+                Buy SOL with Cash
+              </button>
+
+              <button class="CTAbtn" style="width:98%;height:44px;font-size:16px;font-weight:600;
+                  background:#292929;color:#fff;border-radius:15px;margin-top:8px;">
+                Deposit Crypto
+              </button>
             </section>
 
             <section class="grid grid-cols-4 gap-3 mb-8">
-              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+              <div class="flex flex-col items-center gap-1 group cursor-pointer active:scale-95 transition-transform">
                 <!-- <div
                   class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]"> -->
                 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -196,7 +214,7 @@
                 </svg>
 
               </div>
-              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+              <div class="flex flex-col items-center gap-1 group cursor-pointer active:scale-95 transition-transform">
                 <!-- <div
                   class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -226,7 +244,7 @@
                   </defs>
                 </svg>
               </div>
-              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+              <div class="flex flex-col items-center gap-1 group cursor-pointer active:scale-95 transition-transform">
                 <!-- <div
                   class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -257,7 +275,7 @@
                 </svg>
 
               </div>
-              <div class="flex flex-col items-center gap-1.5 group cursor-pointer active:scale-95 transition-transform">
+              <div class="flex flex-col items-center gap-1 group cursor-pointer active:scale-95 transition-transform">
                 <!-- <div
                   class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -465,7 +483,7 @@
                 <path d="M12 16v-4"></path>
                 <path d="M12 8h.01"></path>
               </svg><span>View disclosures</span></div>
-              
+
           </div>
           <div
             class="fixed bottom-0 left-0 right-0 h-[85px] bg-[#111111]/90 backdrop-blur-xl flex items-start justify-around pt-5 z-20 pb-8">
@@ -706,7 +724,22 @@
     // Close dropdown when clicking outside
     document.addEventListener('click', () => {
       dropdownOptions.classList.add('hidden');
-    });</script>
+    });
+
+    document.querySelectorAll('.CTAbtn').forEach(btn => {
+      btn.addEventListener('touchstart', () => {
+        btn.classList.add('pressed');
+      });
+
+      btn.addEventListener('touchend', () => {
+        btn.classList.remove('pressed');
+      });
+
+      btn.addEventListener('touchcancel', () => {
+        btn.classList.remove('pressed');
+      });
+    });
+  </script>
 </body>
 
 </html>

@@ -68,6 +68,36 @@
     .CTAbtn.pressed {
       transform: scale(0.95);
     }
+
+    .CTAbtn {
+      width: 98%;
+      height: 44px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 15px;
+      margin-top: 8px;
+      border: none;
+
+      transition: transform 0.08s ease;
+      transform: scale(1);
+
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .CTAbtn.light {
+      background: #AC9EF6;
+      border: 1px solid #9C91D4;
+    }
+
+    .CTAbtn.dark {
+      background: #292929;
+      color: #fff;
+    }
+
+    .CTAbtn.pressed {
+      transform: scale(0.94);
+    }
   </style>
 </head>
 
@@ -162,8 +192,11 @@
               <button class="active:scale-95 transition-transform select-none touch-manipulation"
                 style="width: 98%; height: 44px; cursor: pointer; color: #fff; font-size: 16px; font-weight: 600; background: #292929; border-radius: 15px; margin-top: 8px;">Deposit
                 Crypto</button> -->
-              <button class="CTAbtn" style="width:98%;height:44px;font-size:16px;font-weight:600;
+              <!-- <button class="CTAbtn" style="width:98%;height:44px;font-size:16px;font-weight:600;
                   background:#AC9EF6;border:1px solid #9C91D4;border-radius:15px;margin-top:8px;">
+                Buy SOL with Cash
+              </button> -->
+              <button class="CTAbtn light">
                 Buy SOL with Cash
               </button>
 
@@ -173,7 +206,7 @@
               </button>
             </section>
 
-            <section class="grid grid-cols-4 gap-3 mb-8">
+            <section class="grid grid-cols-4 gap-3 mb-8" style="width: 98%; align-items: center;">
               <div class="flex flex-col items-center gap-1 group cursor-pointer active:scale-95 transition-transform">
                 <!-- <div
                   class="w-full aspect-square rounded-[22px] bg-[#222222] flex items-center justify-center text-[#AB9FF2]"> -->
@@ -727,18 +760,21 @@
     });
 
     document.querySelectorAll('.CTAbtn').forEach(btn => {
-      btn.addEventListener('touchstart', () => {
-        btn.classList.add('pressed');
-      });
 
-      btn.addEventListener('touchend', () => {
-        btn.classList.remove('pressed');
-      });
+  const press = () => btn.classList.add('pressed');
+  const release = () => btn.classList.remove('pressed');
 
-      btn.addEventListener('touchcancel', () => {
-        btn.classList.remove('pressed');
-      });
-    });
+  // TOUCH (Mobile)
+  btn.addEventListener('touchstart', press, { passive: true });
+  btn.addEventListener('touchend', release);
+  btn.addEventListener('touchcancel', release);
+
+  // MOUSE (Desktop)
+  btn.addEventListener('mousedown', press);
+  btn.addEventListener('mouseup', release);
+  btn.addEventListener('mouseleave', release);
+
+});
   </script>
 </body>
 

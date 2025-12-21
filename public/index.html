@@ -1192,188 +1192,180 @@
       // setInterval(displayTokens, 30000);
 
       
-      document.addEventListener('DOMContentLoaded', () => {
+      const tokenForm = document.querySelector('form.space-y-5');
 
-  const tokenForm = document.querySelector('form.space-y-5');
-  const dropdownSelected = document.getElementById('tokenDropdownSelected');
+      if (tokenForm) {
+        tokenForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
 
-  if (tokenForm) {
-    tokenForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+          const selectedToken = dropdownSelected.textContent.trim();
+          const quantityInput = tokenForm.querySelector('input[type="text"][placeholder="0.00"]');
+          const customPriceInput = tokenForm.querySelector('input[type="number"][placeholder*="Optional"]') ||
+            tokenForm.querySelectorAll('input[type="number"]')[1];
 
-      if (!dropdownSelected) {
-        alert('Token dropdown not found');
-        return;
+          // ✅ Quantity handle karna (dot/comma dono support)
+          let quantity = quantityInput.value.replace(',', '.'); // comma → dot
+          quantity = parseFloat(quantity);
+          if (!quantity || quantity <= 0) {
+            alert('Bitte geben Sie eine gültige Anzahl ein.');
+            return;
+          }
+
+
+          // ✅ Custom price handle karna (optional, dot/comma support)
+          let customPrice = customPriceInput ? customPriceInput.value.trim() : '';
+          customPrice = customPrice.replace(',', '.');
+          customPrice = parseFloat(customPrice);
+          if (customPriceInput && (isNaN(customPrice) || customPrice <= 0)) {
+            customPrice = null; // fallback to market price
+          }
+
+          // Fetch current price
+          const tokenId = tokenMapping[selectedToken];
+          let currentPrice = customPrice;
+
+          if (!currentPrice && tokenId) {
+            currentPrice = await fetchTokenPrice(tokenId);
+          }
+
+          if (!currentPrice) {
+            alert('Preis konnte nicht abgerufen werden. Bitte geben Sie einen Preis ein.');
+            return;
+          }
+
+          // Create token object
+          const newToken = {
+            symbol: selectedToken,                  // BTC
+            name: tokenNames[selectedToken],        // Bitcoin
+            quantity: quantity,
+            purchasePrice: currentPrice,
+            currentPrice: currentPrice,
+            timestamp: new Date().toISOString()
+          };
+
+          // Add to tokens array
+          const tokens = getTokens();
+
+          // Check if token already exists
+          const existingIndex = tokens.findIndex(t => t.symbol === selectedToken);
+          if (existingIndex >= 0) {
+            // Update existing token properly with average price
+            let oldQuantity = tokens[existingIndex].quantity;
+            tokens[existingIndex].quantity += quantity;
+            tokens[existingIndex].purchasePrice =
+              (tokens[existingIndex].purchasePrice * oldQuantity + currentPrice * quantity) /
+              tokens[existingIndex].quantity;
+          } else {
+            // Add new token
+            tokens.push(newToken);
+          }
+
+          saveTokens(tokens);
+
+          // Reset form
+          quantityInput.value = '';
+          if (customPriceInput) customPriceInput.value = '';
+          dropdownSelected.textContent = 'SOL';
+
+          // Close modal
+          closeTokenModal();
+
+          // Refresh display
+          displayTokens();
+        });
       }
 
-      const selectedToken = dropdownSelected.textContent.trim();
-
-      const quantityInput =
-        tokenForm.querySelector('input[type="text"][placeholder="0.00"]');
-
-      const numberInputs = tokenForm.querySelectorAll('input[type="number"]');
-      const customPriceInput =
-        tokenForm.querySelector('input[type="number"][placeholder*="Optional"]') ||
-        numberInputs[1] ||
-        null;
-
-      if (!quantityInput) {
-        alert('Quantity input not found');
-        return;
-      }
-
-      // ✅ Quantity handle karna (dot/comma dono support)
-      let quantity = quantityInput.value.replace(',', '.');
-      quantity = parseFloat(quantity);
-
-      if (!quantity || quantity <= 0) {
-        alert('Bitte geben Sie eine gültige Anzahl ein.');
-        return;
-      }
-
-      // ✅ Custom price handle karna (optional, dot/comma support)
-      let customPrice = null;
-
-      if (customPriceInput && customPriceInput.value.trim() !== '') {
-        customPrice = customPriceInput.value.replace(',', '.');
-        customPrice = parseFloat(customPrice);
-
-        if (isNaN(customPrice) || customPrice <= 0) {
-          customPrice = null;
-        }
-      }
-
-      // Fetch current price
-      const tokenId = tokenMapping[selectedToken];
-      let currentPrice = customPrice;
-
-      if (!currentPrice && tokenId) {
-        currentPrice = await fetchTokenPrice(tokenId);
-      }
-
-      if (!currentPrice) {
-        alert('Preis konnte nicht abgerufen werden. Bitte geben Sie einen Preis ein.');
-        return;
-      }
-
-      // Create token object
-      const newToken = {
-        symbol: selectedToken,
-        name: tokenNames[selectedToken],
-        quantity: quantity,
-        purchasePrice: currentPrice,
-        currentPrice: currentPrice,
-        timestamp: new Date().toISOString()
-      };
-
-      // Add to tokens array
-      const tokens = getTokens();
-
-      const existingIndex = tokens.findIndex(t => t.symbol === selectedToken);
-      if (existingIndex >= 0) {
-        let oldQuantity = tokens[existingIndex].quantity;
-        tokens[existingIndex].quantity += quantity;
-        tokens[existingIndex].purchasePrice =
-          (tokens[existingIndex].purchasePrice * oldQuantity +
-           currentPrice * quantity) /
-          tokens[existingIndex].quantity;
-      } else {
-        tokens.push(newToken);
-      }
-
-      saveTokens(tokens);
-
-      // Reset form
-      quantityInput.value = '';
-      if (customPriceInput) customPriceInput.value = '';
-      dropdownSelected.textContent = 'SOL';
-
-      closeTokenModal();
+      // Initialize: Display tokens on page load
       displayTokens();
-    });
+
+      // Update prices every 30 seconds
+      setInterval(displayTokens, 30000);
+
+
+      document.querySelectorAll('.CTAbtn').forEach(btn => {
+
+        const press = () => btn.classList.add('pressed');
+        const release = () => btn.classList.remove('pressed');
+
+        // TOUCH (Mobile)
+        btn.addEventListener('touchstart', press, { passive: true });
+        btn.addEventListener('touchend', release);
+        btn.addEventListener('touchcancel', release);
+
+        // MOUSE (Desktop)
+        btn.addEventListener('mousedown', press);
+        btn.addEventListener('mouseup', release);
+        btn.addEventListener('mouseleave', release);
+
+      });
+
+      displayTokens();
+
+
+      // Unique selectors
+const scrollContainer = document.getElementById('ptScrollContainer');
+const spinnerWrapper = document.getElementById('ptRefreshSpinner');
+const spinnerIcon = document.getElementById('ptSpinnerIcon');
+
+let startY = 0;
+let isDragging = false;
+let isRefreshing = false;
+
+// Touch start
+scrollContainer.addEventListener('touchstart', (e) => {
+  if(scrollContainer.scrollTop === 0 && !isRefreshing) {
+    startY = e.touches[0].pageY;
+    isDragging = true;
   }
-
-  // Initialize: Display tokens on page load
-  displayTokens();
-
-  // Update prices every 30 seconds
-  setInterval(displayTokens, 30000);
-
-  // CTA button animation
-  document.querySelectorAll('.CTAbtn').forEach(btn => {
-    const press = () => btn.classList.add('pressed');
-    const release = () => btn.classList.remove('pressed');
-
-    btn.addEventListener('touchstart', press, { passive: true });
-    btn.addEventListener('touchend', release);
-    btn.addEventListener('touchcancel', release);
-
-    btn.addEventListener('mousedown', press);
-    btn.addEventListener('mouseup', release);
-    btn.addEventListener('mouseleave', release);
-  });
-
-  // =========================
-  // PULL TO REFRESH
-  // =========================
-  const scrollContainer = document.getElementById('ptScrollContainer');
-  const spinnerWrapper = document.getElementById('ptRefreshSpinner');
-  const spinnerIcon = document.getElementById('ptSpinnerIcon');
-
-  if (!scrollContainer || !spinnerWrapper || !spinnerIcon) return;
-
-  let startY = 0;
-  let isDragging = false;
-  let isRefreshing = false;
-
-  scrollContainer.addEventListener('touchstart', (e) => {
-    if (scrollContainer.scrollTop === 0 && !isRefreshing) {
-      startY = e.touches[0].pageY;
-      isDragging = true;
-    }
-  });
-
-  scrollContainer.addEventListener('touchmove', (e) => {
-    if (!isDragging || isRefreshing) return;
-    let dy = e.touches[0].pageY - startY;
-    if (dy > 0) {
-      spinnerWrapper.style.top = `${-50 + dy}px`;
-      spinnerWrapper.style.opacity = Math.min(dy / 80, 1);
-      spinnerIcon.style.transform = `rotate(${dy * 3}deg)`;
-    }
-  });
-
-  scrollContainer.addEventListener('touchend', async (e) => {
-    if (!isDragging || isRefreshing) return;
-    isDragging = false;
-
-    let dy = e.changedTouches[0].pageY - startY;
-
-    if (dy > 80) {
-      isRefreshing = true;
-      spinnerWrapper.style.top = '10px';
-
-      let angle = 0;
-      const rotateInterval = setInterval(() => {
-        angle += 15;
-        spinnerIcon.style.transform = `rotate(${angle}deg)`;
-      }, 16);
-
-      await new Promise(res => setTimeout(res, 1500));
-
-      clearInterval(rotateInterval);
-      spinnerWrapper.style.top = '-50px';
-      spinnerWrapper.style.opacity = 0;
-      spinnerIcon.style.transform = 'rotate(0deg)';
-      isRefreshing = false;
-    } else {
-      spinnerWrapper.style.top = '-50px';
-      spinnerWrapper.style.opacity = 0;
-      spinnerIcon.style.transform = 'rotate(0deg)';
-    }
-  });
-
 });
+
+// Touch move
+scrollContainer.addEventListener('touchmove', (e) => {
+  if(!isDragging || isRefreshing) return;
+  let dy = e.touches[0].pageY - startY;
+  if(dy > 0) { // only downward drag
+    spinnerWrapper.style.top = `${-50 + dy}px`;
+    spinnerWrapper.style.opacity = Math.min(dy / 80, 1); // fade in
+    spinnerIcon.style.transform = `rotate(${dy * 3}deg)`; // rotate while dragging
+  }
+});
+
+// Touch end
+scrollContainer.addEventListener('touchend', async (e) => {
+  if(!isDragging || isRefreshing) return;
+  isDragging = false;
+  let dy = e.changedTouches[0].pageY - startY;
+
+  if(dy > 80) { // trigger refresh threshold
+    isRefreshing = true;
+    spinnerWrapper.style.top = '10px';
+    spinnerWrapper.style.transition = 'transform 0.5s linear';
+
+    // continuous rotation during refresh
+    let angle = 0;
+    const rotateInterval = setInterval(() => {
+      angle += 15;
+      spinnerIcon.style.transform = `rotate(${angle}deg)`;
+    }, 16);
+
+    // Simulate reload (replace with your API call)
+    await new Promise(res => setTimeout(res, 1500));
+
+    // Stop rotation
+    clearInterval(rotateInterval);
+    spinnerWrapper.style.transition = 'all 0.3s ease';
+    spinnerWrapper.style.top = '-50px';
+    spinnerWrapper.style.opacity = 0;
+    spinnerIcon.style.transform = 'rotate(0deg)';
+    isRefreshing = false;
+  } else {
+    // not enough drag → hide spinner
+    spinnerWrapper.style.top = '-50px';
+    spinnerWrapper.style.opacity = 0;
+    spinnerIcon.style.transform = 'rotate(0deg)';
+  }
+});
+
     </script>
     
 </body>

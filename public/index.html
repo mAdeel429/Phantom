@@ -703,7 +703,7 @@
         </div>
         <div class="space-y-2"><label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#888]">Anzahl
-            (Menge)</label><input type="text"
+            (Menge)</label><input type="text" id="token-quantity"
             class="flex w-full border border-input px-3 py-1 shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-[#2C2C2E] border-none text-white h-12 text-lg rounded-xl placeholder:text-[#555]"
             placeholder="0.00" value=""></div>
         <div class="space-y-2"><label
@@ -1197,12 +1197,17 @@
       if (tokenForm) {
         tokenForm.addEventListener('submit', async (e) => {
           e.preventDefault();
-
+          
           const selectedToken = dropdownSelected.textContent.trim();
-          const quantityInput = tokenForm.querySelector('input[type="text"][placeholder="0.00"]');
+          const quantityInput = tokenForm.querySelector('#token-quantity');
           const customPriceInput = tokenForm.querySelector('input[type="number"][placeholder*="Optional"]') ||
             tokenForm.querySelectorAll('input[type="number"]')[1];
 
+            
+if (!quantityInput) {
+  alert('Quantity input not found');
+  return;
+}
           // ✅ Quantity handle karna (dot/comma dono support)
           let quantity = quantityInput.value.replace(',', '.'); // comma → dot
           quantity = parseFloat(quantity);
